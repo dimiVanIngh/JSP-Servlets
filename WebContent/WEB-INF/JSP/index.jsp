@@ -21,7 +21,7 @@
 		Telefoonnummer helpdesk: <a href="tel:+${initParam.telefoonHelpDesk.replace('/',' ')}">${initParam.telefoonHelpDesk}</a>
 	</div>
 	<div>
-		Telefoonnummer helpdesk: <a href="tel:+${telefoonNummerHelpDesk.replace('/',' ')}">${telefoonNummerHelpDesk}</a>
+		Telefoonnummer -hallo- helpdesk: <a href="tel:+${telefoonNummerHelpDesk.replace('/',' ')}">${telefoonNummerHelpDesk}</a>
 	</div>
 </body>
 </html>
