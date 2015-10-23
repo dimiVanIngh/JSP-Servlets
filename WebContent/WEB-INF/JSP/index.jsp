@@ -1,5 +1,4 @@
-<%@page contentType='text/html' pageEncoding='UTF-8' session='false'
-	trimDirectiveWhitespaces='true'%>
+<%@page contentType='text/html' pageEncoding='UTF-8' session='false' trimDirectiveWhitespaces='true'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <!doctype html>
 <html lang="nl">
@@ -21,7 +20,7 @@
 		Telefoonnummer helpdesk: <a href="tel:+${initParam.telefoonHelpDesk.replace('/',' ')}">${initParam.telefoonHelpDesk}</a>
 	</div>
 	<div>
-		Telefoonnummer -hallo- helpdesk: <a href="tel:+${telefoonNummerHelpDesk.replace('/',' ')}">${telefoonNummerHelpDesk}</a>
+		Telefoonnummer helpdesk: <a href="tel:+${telefoonNummerHelpDesk.replace('/',' ')}">${telefoonNummerHelpDesk}</a>
 	</div>
 </body>
 </html>
