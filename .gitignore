@@ -1,13 +1,6 @@
 .gitignore
-
 .classpath
 .buildpath
 .settings
-.jar
-
-target/
-/build/
-
-bin/**
-tmp/**
+.class
 
