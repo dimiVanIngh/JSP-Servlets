@@ -8,6 +8,7 @@
     </c:import>
   </head> 
   <body>
+  <c:import url='/WEB-INF/JSP/menu.jsp'/> 
     <h1>Ingrediënten</h1>
     <form>
       <label>Ingrediënt:<c:if test="${not empty fouten}"><span>${fouten.ingredient}</span></c:if>

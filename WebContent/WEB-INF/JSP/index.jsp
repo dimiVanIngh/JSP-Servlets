@@ -8,6 +8,7 @@
 </c:import>
 </head>
 <body>
+<c:import url='/WEB-INF/JSP/menu.jsp'/> 
 	<h1>Frituur Frida</h1>
 	<h2>Vandaag zijn we ${begroeting}</h2>
 	<img src="images/${begroeting}.png" alt="${begroeting}">
@@ -15,7 +16,6 @@
 	<p>
 		${adres}<br> ${adres.gemeente}
 	</p>
-	<a href="sauzen.htm">Sauzen</a>
 	<div>
 		Telefoonnummer helpdesk: <a href="tel:+${initParam.telefoonHelpDesk.replace('/',' ')}">${initParam.telefoonHelpDesk}</a>
 	</div>

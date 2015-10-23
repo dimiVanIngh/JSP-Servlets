@@ -30,6 +30,10 @@ public class SausDAO {
 	public void create(Saus saus) {
 
 	}
+	
+	public void delete(long nummer){
+		SAUZEN.remove(nummer);
+	}
 
 	public List<Saus> findSauzenMetIngredient(String ingredient) {
 		List<Saus> gevondenSauzen = new ArrayList<>();
