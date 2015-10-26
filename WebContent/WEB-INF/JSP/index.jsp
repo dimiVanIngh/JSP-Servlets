@@ -17,10 +17,11 @@
 		${adres}<br> ${adres.gemeente}
 	</p>
 	<div>
-		Telefoonnummer helpdesk: <a href="tel:+${initParam.telefoonHelpDesk.replace('/',' ')}">${initParam.telefoonHelpDesk}</a>
+		Telefoonnummer helpdesk: <a href="tel:+${initParam.telefoonHelpDesk.replace('/','')}">${initParam.telefoonHelpDesk.replace('/','')}</a>
 	</div>
 	<div>
-		Telefoonnummer helpdesk: <a href="tel:+${telefoonNummerHelpDesk.replace('/',' ')}">${telefoonNummerHelpDesk}</a>
+		Telefoonnummer helpdesk: <a href="tel:+${telefoonNummerHelpDesk.replace('/','')}">${telefoonNummerHelpDesk}</a>
 	</div>
+
 </body>
 </html>
