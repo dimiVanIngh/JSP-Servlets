@@ -11,7 +11,7 @@
 <c:import url='/WEB-INF/JSP/menu.jsp'/> 
 	<h1>Frituur Frida</h1>
 	<h2>Vandaag zijn we ${begroeting}</h2>
-	<img src="images/${begroeting}.png" alt="${begroeting}">
+	<img src=<c:url value='images/${begroeting}.png' /> alt="${begroeting}">
 	<h2>Adres</h2>
 	<p>
 		${adres}<br> ${adres.gemeente}
