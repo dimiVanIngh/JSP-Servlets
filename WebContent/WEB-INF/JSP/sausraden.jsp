@@ -10,6 +10,7 @@
     </c:import>
   </head> 
   <body>
+    <c:import url='/WEB-INF/JSP/menu.jsp'/> 
     <h1>Saus raden</h1>
     <c:choose>
       <c:when test="${sausRadenSpel.verloren}">
