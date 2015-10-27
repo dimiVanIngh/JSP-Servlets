@@ -4,4 +4,7 @@
     <param-name>telefoonHelpDesk</param-name>
     <param-value>016/250962</param-value>
   </context-param>
+    <session-config>
+    <session-timeout>20</session-timeout>
+  </session-config>
 </web-app>

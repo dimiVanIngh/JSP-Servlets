@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import be.vdab.entities.Saus;
@@ -29,6 +30,12 @@ public class SausDAO {
 
 	public void create(Saus saus) {
 
+	}
+
+	public Saus getRandomSaus(){
+		List<Saus> valuesList = new ArrayList<Saus>(SAUZEN.values());
+		int randomIndex = new Random().nextInt(valuesList.size());
+		return valuesList.get(randomIndex);
 	}
 	
 	public void delete(long nummer){

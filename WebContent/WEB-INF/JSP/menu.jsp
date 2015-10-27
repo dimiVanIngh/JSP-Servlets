@@ -7,5 +7,6 @@
 <li><a href="<c:url value='/ingredienten.htm'/>">Ingrediënten</a></li>
 <li><a href="<c:url value='/meisjesjongens.htm'/>">Meisje of Jongen</a></li>
 <li><a href="<c:url value='/zoekdefriet.htm'/>">Zoek de friet</a></li>
+<li><a href="<c:url value='/sausraden.htm'/>">Raad de saus</a></li>
 </ul></nav>
 </header>
