@@ -1,56 +1,85 @@
 package be.vdab.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
 
 import be.vdab.entities.Saus;
 
-public class SausDAO {
-	private static final Map<Long, Saus> SAUZEN = new ConcurrentHashMap<>();
+public class SausDAO extends AbstractDAO {
+	  private static final String FIND_ALL_SQL = 
+	    "select sauzen.id, sauzen.naam as sausnaam," +
+	    " ingrediënten.naam as ingredientnaam" +
+	    " from sauzen left join ingrediënten_in_saus" +
+	    " on sauzen.id=ingrediënten_in_saus.sauzen_id" +
+	    " left join ingrediënten " +
+	    " on ingrediënten_in_saus.ingrediënten_id=ingrediënten.id" +
+	    " order by sauzen.naam"; 
+	  
+	  private static final String FIND_BY_INGREDIENT_SQL =
+	    "select sauzen.id, sauzen.naam as sausnaam" +
+	    " from sauzen inner join ingrediënten_in_saus " + 
+	    " on sauzen.id=ingrediënten_in_saus.sauzen_id" +
+	    " inner join ingrediënten" +
+	    " on ingrediënten_in_saus.ingrediënten_id=ingrediënten.id" +
+	    " where ingrediënten.naam = ?" + " order by sauzen.naam"; 
+	  
+	  private static final String DELETE_SAUS = "delete from sauzen where id=?";
+	  
+	  public List<Saus> findAll() { 
+	    try(Connection connection = dataSource.getConnection();
+	        Statement statement = connection.createStatement();
+	        ResultSet resultSet = statement.executeQuery(FIND_ALL_SQL)) {
+	      List<Saus> sauzen = new ArrayList<>();
+	      for (long vorigeId = 0; resultSet.next();) {
+	        long id = resultSet.getLong("id");
+	        if (id != vorigeId) {
+	          sauzen.add(resultSetRijNaarSausZonderIngredienten(resultSet));
+	          vorigeId = id;
+	        }
+	        sauzen.get(sauzen.size() - 1).addIngredient(
+	          resultSet.getString("ingredientnaam"));
+	      }
+	      return sauzen;
+	    } catch (SQLException ex) {
+	      throw new DAOException(ex);
+	    }
+	  } 
 
-	static {
-		SAUZEN.put(12L, new Saus(12L, "cocktail", Arrays.asList("mayonaise", "ketchup", "whisky")));
-		SAUZEN.put(14L, new Saus(14L, "mayonaise", Arrays.asList("ei", "mosterd")));
-		SAUZEN.put(17L, new Saus(17L, "mosterd", Arrays.asList("mayonaise", "azijn", "whisky")));
-		SAUZEN.put(23L, new Saus(23L, "tartare", Arrays.asList("mayonaise", "ketchup", "whisky", "azijn")));
-		SAUZEN.put(24L, new Saus(24L, "vinaigrette", Arrays.asList("olijfolie", "mosterd", "azijn")));
-	}
+	  public List<Saus> findByIngredient(String ingredient) {
+	    try (Connection connection = dataSource.getConnection();
+	         PreparedStatement statement = connection.prepareStatement(
+	           FIND_BY_INGREDIENT_SQL)) {
+	      statement.setString(1, ingredient);
+	      List<Saus> sauzen = new ArrayList<>();
+	      try (ResultSet resultSet = statement.executeQuery()) {
+	        while (resultSet.next()) {
+	          sauzen.add(resultSetRijNaarSausZonderIngredienten(resultSet));
+	        }
+	        return sauzen;
+	       }
+	    } catch (SQLException ex) {
+	        throw new DAOException(ex);
+	    }
+	  } 
+	  
+	  private Saus resultSetRijNaarSausZonderIngredienten(ResultSet resultSet)
+	    throws SQLException {
+	    return new Saus(resultSet.getLong("id"), resultSet.getString("sausnaam"),new ArrayList<String>());
+	  }
 
-	public List<Saus> findAll() {
-		return new ArrayList<>(SAUZEN.values());
-	}
-
-	public Saus read(long id) {
-		return SAUZEN.get(id);
-	}
-
-	public void create(Saus saus) {
-
-	}
-
-	public Saus getRandomSaus(){
-		List<Saus> valuesList = new ArrayList<Saus>(SAUZEN.values());
-		int randomIndex = new Random().nextInt(valuesList.size());
-		return valuesList.get(randomIndex);
+	public void delete(long id) {
+		try (Connection connection = dataSource.getConnection();
+				PreparedStatement statement = connection.prepareStatement(DELETE_SAUS)) {
+			statement.setLong(1, id);
+			statement.executeUpdate();
+		} catch (SQLException ex) {
+			throw new DAOException(ex);
+		}
 	}
 	
-	public void delete(long nummer){
-		SAUZEN.remove(nummer);
-	}
-
-	public List<Saus> findSauzenMetIngredient(String ingredient) {
-		List<Saus> gevondenSauzen = new ArrayList<>();
-		for (Saus saus : findAll()) {
-			for (String ingredientInSaus : saus.getIngredienten()) {
-				if (ingredientInSaus.equalsIgnoreCase(ingredient)) {
-					gevondenSauzen.add(saus);
-				}
-			}
-		}
-		return gevondenSauzen;
-	}
 }
