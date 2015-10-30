@@ -23,7 +23,7 @@ public class RequestStatistiekListener implements ServletContextListener, Servle
     }
 
     public void requestInitialized(ServletRequestEvent event) {
-        if (event.getServletRequest() instanceof HttpServletRequest) {
+        /*if (event.getServletRequest() instanceof HttpServletRequest) {
           HttpServletRequest request = (HttpServletRequest) event.getServletRequest();
           // get URI
           String url = request.getRequestURI();
@@ -50,7 +50,7 @@ public class RequestStatistiekListener implements ServletContextListener, Servle
               aantalReedsAanwezig.incrementAndGet();
             }
           }
-        }
+        }*/
       } 
 
     public void contextDestroyed(ServletContextEvent arg0)  { 
@@ -59,8 +59,8 @@ public class RequestStatistiekListener implements ServletContextListener, Servle
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-        event.getServletContext().setAttribute(STATISTIEK,
-          new ConcurrentHashMap<String, AtomicInteger>());
+       /* event.getServletContext().setAttribute(STATISTIEK,
+          new ConcurrentHashMap<String, AtomicInteger>());*/
       }
 	
 }
