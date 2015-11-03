@@ -1,10 +1,7 @@
 package be.vdab.filters;
 
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.Filter;
@@ -24,7 +21,7 @@ public class StatistiekFilter implements Filter {
 	private static final String STATISTIEK = "statistiek";
 
 	public StatistiekFilter() {
-
+		
 	}
 
 	public void destroy() {

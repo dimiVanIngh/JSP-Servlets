@@ -2,16 +2,13 @@ package be.vdab.listeners;
 
 import java.util.Arrays;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArraySet;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.ServletRequestEvent;
 import javax.servlet.ServletRequestListener;
 import javax.servlet.annotation.WebListener;
-import javax.servlet.http.HttpServletRequest;
 
 @WebListener
 public class RequestStatistiekListener implements ServletContextListener, ServletRequestListener {
@@ -59,8 +56,7 @@ public class RequestStatistiekListener implements ServletContextListener, Servle
 
     @Override
     public void contextInitialized(ServletContextEvent event) {
-       /* event.getServletContext().setAttribute(STATISTIEK,
-          new ConcurrentHashMap<String, AtomicInteger>());*/
+       // event.getServletContext().setAttribute(STATISTIEK,new ConcurrentHashMap<String, AtomicInteger>());
       }
 	
 }
