@@ -4,9 +4,7 @@
 <!doctype html>
 <html lang="nl">
   <head>
-    <c:import url="head.jsp">
-      <c:param name='title' value='Statistiek'/>
-    </c:import>
+    <vdab:head title='Statistiek'/>
     <style>
     td:last-child {
       text-align:right;

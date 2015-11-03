@@ -4,9 +4,7 @@
 <!doctype html>
 <html lang="nl">
   <head>
-    <c:import url="head.jsp">
-      <c:param name='title' value='Meisjes jongens'/>
-    </c:import>
+    <vdab:head title='Meisjes Jongens'/>
   </head> 
   <body class="${cookie.meisjesjongens.value}">
     <vdab:menu/> 

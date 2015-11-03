@@ -1,4 +1,5 @@
-<%@page contentType='text/html' pageEncoding='UTF-8' session='false' trimDirectiveWhitespaces ='true'%> 
+<%@ tag description="head onderdeel van een pagina, title required" language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces ='true'%> 
+<%@attribute name='title' required='true' type='java.lang.String'%>
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <title>${param.title}</title>
 <link rel='shortcut icon' href=<c:url value='/images/favicon.ico'/> type='image/x-icon'/>

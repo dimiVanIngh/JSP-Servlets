@@ -6,10 +6,8 @@
 <!doctype html>
 <html lang="nl">
 <head>
-	<fmt:message key='frituurFrida' var="title"/>
-	<c:import url='/WEB-INF/JSP/head.jsp'>
-		<c:param name='title' value='${title}' />
-	</c:import>
+	<fmt:message key='frituurFrida' var="ff"/>
+	<vdab:head title='${ff}'/>
 </head>
 <body>
 	<vdab:menu/> 
