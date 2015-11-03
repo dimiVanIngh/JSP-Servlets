@@ -1,12 +1,13 @@
 <%@page contentType='text/html' pageEncoding='UTF-8' session='false' trimDirectiveWhitespaces ='true'%> 
 <%@taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
+<%@taglib prefix='vdab' uri='http://vdab.be/tags'%> 
 <!doctype html>
 <html lang='nl'>
 <head>
 	<c:import url='/WEB-INF/JSP/head.jsp'><c:param name='title' value="Sauzen"/></c:import> 
 </head>
 <body>
-<c:import url='/WEB-INF/JSP/menu.jsp'/> 
+	<vdab:menu/>
 	<h1>Sauzen <c:forEach begin='1' end='5'>&#9733; <%-- de HTML code van een ster --%></c:forEach></h1>
 	<p><span>${fouten.leeg}</span></p>
 	<form method='post' id='verwijdersauzenform' action="<c:url value='/sauzen/verwijderen.htm'/>">
