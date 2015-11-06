@@ -55,6 +55,7 @@ public class GastenboekServlet extends HttpServlet {
 			response.sendRedirect(response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath())));
 		} else {
 			request.setAttribute("fouten", fouten);
+			request.setAttribute("berichten", gastenboekDAO.findAll());
 			request.getRequestDispatcher(VIEW).forward(request, response);
 		}
 	}

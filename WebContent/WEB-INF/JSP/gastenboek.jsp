@@ -15,9 +15,9 @@
     	<c:otherwise>
     		<form method="post" id ='toevoegenBericht'>
     			<label>Naam:<c:if test="${not empty fouten.naam}"><span>${fouten.naam}</span></c:if>
-    			<input name="naam" value="${param.naam}" autofocus  type="text"></label>
+    			<input name="naam" value="${param.naam}" autofocus required type="text"></label>
       			<label>Bericht:<c:if test="${not empty fouten.bericht}"><span>${fouten.bericht}</span></c:if>
-      			<textarea rows="5" cols="50" maxlength ="255" name="bericht" ></textarea>
+      			<textarea rows="5" cols="50" maxlength ="255" name="bericht" required>${param.bericht}</textarea>
       			</label>
       			<input type="submit" value="Toevoegen" id="toevoegenKnop">
     		</form>
