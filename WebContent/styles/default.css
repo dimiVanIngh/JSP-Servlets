@@ -43,7 +43,7 @@ label {
 	cursor: pointer;
 }
 
-input {
+input, textarea {
 	display: block;
 	margin-top: 0.2em;
 	margin-bottom: 1em;
@@ -115,3 +115,11 @@ ul.zebra li:nth-child(odd):hover, ul.zebra li:nth-child(even):hover {
   background-color: #CCFFFF;
   color: #3300FF;
 } 
+
+ul.list{
+	list-style: none;
+	padding: 0;
+}
+ul.list li:nth-child(even){
+	padding-bottom: 1em;
+}

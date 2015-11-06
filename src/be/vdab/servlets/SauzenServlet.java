@@ -23,9 +23,7 @@ public class SauzenServlet extends HttpServlet {
 		sausDAO.setDataSource(dataSource);
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("sauzen", sausDAO.findAll());
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
