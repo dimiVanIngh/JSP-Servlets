@@ -17,7 +17,6 @@
     <img src='<c:url value="/images/${afbeelding}.png"/>' 
       alt="<fmt:message key='${openGesloten}'/>">
     <h2><fmt:message key='adres'/></h2>
-
 	<p>
 		${adres}<br> ${adres.gemeente}
 	</p>
@@ -27,6 +26,5 @@
 	<div>
 		Telefoonnummer helpdesk: <a href="tel:+${telefoonNummerHelpDesk.replace('/','')}">${telefoonNummerHelpDesk}</a>
 	</div>
-
 </body>
 </html>
