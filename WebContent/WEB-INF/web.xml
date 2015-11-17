@@ -9,7 +9,7 @@
 	</context-param>
 	<context-param>
 		<param-name>wachtwoord</param-name>
-		<param-value>rootWachtwoord</param-value>
+		<param-value>admin</param-value>
 	</context-param>
 	<session-config>
 		<session-timeout>20</session-timeout>

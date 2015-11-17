@@ -9,8 +9,8 @@
   <body>
   <vdab:menu/> 
     <h1>Inlogform</h1>
-    <form>
-      <label>Wachtwoord:<c:if test="${not empty fouten}"><span>${fouten.inlog}</span></c:if>
+    <form method="post">
+      <label>Wachtwoord:<c:if test="${not empty fout}"><span>${fout}</span></c:if>
             <input name="wachtwoord" autofocus required type="password">
       </label>
       <input type="submit" value="Inloggen">

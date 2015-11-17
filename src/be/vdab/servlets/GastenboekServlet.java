@@ -1,8 +1,9 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
 import javax.sql.DataSource;
 
 import be.vdab.dao.GastenboekDAO;
@@ -37,25 +37,52 @@ public class GastenboekServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Map<String, String> fouten = new HashMap<>();
+		if (request.getParameter("toevoegen") != null) {
+			toevoegen(request, response);
+		} else if (request.getParameter("uitloggen") != null) {
+			uitloggen(request, response);
+		} else if (request.getParameter("verwijderen") != null) {
+			verwijderen(request, response);
+		}
+	}
 
+	private void verwijderen(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		List<Long> ids = new ArrayList<>();
+		if (request.getParameterValues("id") != null) {		
+			for (String id : request.getParameterValues("id")) {
+				ids.add(Long.parseLong(id));
+			}
+		}
+		if (!ids.isEmpty()) {
+			gastenboekDAO.delete(ids);
+		}
+		response.sendRedirect(response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath())));
+	}
+
+	private void uitloggen(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getSession().removeAttribute("ingelogd");
+		response.sendRedirect(response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath())));
+	}
+
+	private void toevoegen(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		Map<String, String> fouten = new HashMap<>();
 		String naam = request.getParameter("naam");
 		if (!GastenboekBericht.isNaamValid(naam)) {
 			fouten.put("naam", "naam is verplicht");
 		}
-
 		String bericht = request.getParameter("bericht");
 		if (!GastenboekBericht.isBerichtValid(bericht)) {
 			fouten.put("bericht", "een bericht moet tussen 1 en 255 tekens bevatten");
 		}
-
 		if (fouten.isEmpty()) {
-			GastenboekBericht geldigBericht = new GastenboekBericht(naam, bericht);
-			gastenboekDAO.addBericht(geldigBericht);
+			gastenboekDAO.addBericht(new GastenboekBericht(naam, bericht));
 			response.sendRedirect(response.encodeRedirectURL(String.format(REDIRECT_URL, request.getContextPath())));
 		} else {
 			request.setAttribute("fouten", fouten);
-			request.setAttribute("berichten", gastenboekDAO.findAll());
 			request.getRequestDispatcher(VIEW).forward(request, response);
 		}
 	}
