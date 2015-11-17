@@ -10,6 +10,9 @@
 <li><a href="<c:url value='/sausraden.htm'/>">Raad de saus</a></li>
 <li><a href="<c:url value='/statistiek.htm'/>">Statistieken</a></li>
 <li><a href="<c:url value='/gastenboek.htm'/>">Gastenboek</a></li>
-<c:if test="${ingelogd}"><li><a href="<c:url value='/gastenboek.htm?uitloggen=true'/>">Uitloggen</a></li></c:if>
+<c:choose>
+	<c:when test="${empty ingelogd}"><li><a href="<c:url value='/inloggen.htm'/>">Inloggen</a></li></c:when>
+	<c:otherwise><li><a href="<c:url value='/gastenboek.htm?uitloggen=true'/>">Uitloggen</a></li></c:otherwise>
+</c:choose>
 </ul></nav>
 </header>

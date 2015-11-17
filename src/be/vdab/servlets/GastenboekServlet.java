@@ -32,6 +32,10 @@ public class GastenboekServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setAttribute("berichten", gastenboekDAO.findAll());
+		if(request.getParameter("uitloggen") != null){
+			request.getSession().removeAttribute("ingelogd");
+			response.sendRedirect(response.encodeRedirectURL(request.getContextPath()));
+		}else
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 
